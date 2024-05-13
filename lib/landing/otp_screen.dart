@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../otp_screen.dart';
-
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class OtpScreen extends StatelessWidget {
+  final String phone;
+  final bool isLogin;
+  const OtpScreen({super.key, required this.phone, this.isLogin = true});
 
   @override
   Widget build(BuildContext context) {
@@ -15,12 +15,11 @@ class LoginPage extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             child: TextFormField(
               decoration: const InputDecoration(
-                labelText: 'Phone',
-                hintText: 'Enter your phone number',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                )
-              ),
+                  labelText: 'OTP',
+                  hintText: 'Enter the OTP sent to your phone',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  )),
             ),
           ),
           Container(
@@ -28,7 +27,7 @@ class LoginPage extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder:  (context) => OtpScreen(phone: '1234567890')));
+                
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Theme.of(context).colorScheme.primary.withAlpha(150),
@@ -41,11 +40,11 @@ class LoginPage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              child: const Text('Login'),
+              child: const Text('Submit'),
             ),
           )
         ],
-      )
+      ),
     );
   }
 }
