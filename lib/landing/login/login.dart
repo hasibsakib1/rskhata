@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../otp_screen.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -28,7 +27,7 @@ class LoginPage extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder:  (context) => OtpScreen(phone: '1234567890')));
+                // Navigator.push(context, MaterialPageRoute(builder:  (context) => OtpScreen(phone: '1234567890')));
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Theme.of(context).colorScheme.primary.withAlpha(150),

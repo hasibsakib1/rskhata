@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'registration/controller/business_type_controller.dart';
 import 'registration/registration.dart';
 import 'login/login.dart';
 
-class LandingPage extends StatelessWidget {
+class LandingPage extends ConsumerWidget {
   const LandingPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -42,6 +44,7 @@ class LandingPage extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 child: ElevatedButton(
                   onPressed: () {
+                    ref.read(businessTypeProvider.notifier).fetchBusinessTypes();
                     Navigator.push(context, MaterialPageRoute(builder:  (context) => RegistrationPage()));
                   },
                   style: ElevatedButton.styleFrom(

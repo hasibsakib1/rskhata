@@ -1,11 +1,16 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 
 import 'landing/landing_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
+Dio dio = Dio();
+Logger log = Logger();
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
