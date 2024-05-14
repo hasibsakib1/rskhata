@@ -5,3 +5,6 @@ String registrationApi = "${baseUrl}sign-up/store";
 String registrationOtpApi = "${baseUrl}sign-up/verify-otp-code";
 String reSendOtpApi = "${baseUrl}sign-up/send-otp-code";
 
+String loginOtpApi = "${baseUrl}send-login-otp";
+String loginApi = "${baseUrl}login";
+

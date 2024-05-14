@@ -125,9 +125,6 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
                             businessTypeId: businessTypeId ?? 0,
                           ),
                         );
-                    // if(ref.read(registrationControllerProvider) !=0){
-                    //   Navigator.push(context, MaterialPageRoute(builder: (context)=> OtpScreen(phoneOrIdentifier: int.parse(phoneController.text))));
-                    // }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor:

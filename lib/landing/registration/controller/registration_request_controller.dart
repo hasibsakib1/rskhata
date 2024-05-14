@@ -35,7 +35,7 @@ class RegistrationRequestController extends StateNotifier<int> {
       log.i(data);
       if (data['status'] == 200) {
         state = data['identifier_id'] ?? 0;
-        Navigator.push(context, MaterialPageRoute(builder: (context) => OtpScreen(phoneOrIdentifier: state.toString())));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => OtpScreen(phoneOrIdentifier: state.toString(), isLogin: false,)));
       } else {
         throw Exception('Failed to register');
       }

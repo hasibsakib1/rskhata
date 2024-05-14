@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'controller/login_otp_request.dart';
 
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class LoginPage extends ConsumerWidget {
+  LoginPage({super.key});
+
+  final TextEditingController phoneController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -13,9 +19,16 @@ class LoginPage extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(10),
             child: TextFormField(
+              controller: phoneController,
+              keyboardType: TextInputType.phone,
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.digitsOnly,
+              ],
+              maxLength: 11,
               decoration: const InputDecoration(
                 labelText: 'Phone',
                 hintText: 'Enter your phone number',
+                counterText: '',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                 )
@@ -27,7 +40,7 @@ class LoginPage extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             child: ElevatedButton(
               onPressed: () {
-                // Navigator.push(context, MaterialPageRoute(builder:  (context) => OtpScreen(phone: '1234567890')));
+                ref.read(loginOtpRequestProvider.notifier).loginOtpRequest(context, phoneController.text);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Theme.of(context).colorScheme.primary.withAlpha(150),

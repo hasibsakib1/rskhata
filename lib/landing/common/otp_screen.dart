@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'controller/login_otp.dart';
 import 'controller/registration_otp.dart';
 
 class OtpScreen extends ConsumerWidget {
   final String phoneOrIdentifier;
-
   final bool isLogin;
+
   OtpScreen({super.key, required this.phoneOrIdentifier, this.isLogin = true});
 
   final TextEditingController otpController = TextEditingController();
@@ -22,7 +23,7 @@ class OtpScreen extends ConsumerWidget {
             padding: const EdgeInsets.all(10),
             child: TextFormField(
               controller: otpController,
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.phone,
               inputFormatters: <TextInputFormatter>[
                 FilteringTextInputFormatter.digitsOnly,
               ],
@@ -41,6 +42,8 @@ class OtpScreen extends ConsumerWidget {
             padding: const EdgeInsets.all(10),
             child: ElevatedButton(
               onPressed: () {
+                isLogin ?
+                ref.read(loginOtpControllerProvider.notifier).verifyLoginOtp(phoneOrIdentifier, otpController.text) :
                 ref.read(registrationOtpControllerProvider.notifier).verifyRegistrationOtp(phoneOrIdentifier, otpController.text);
               },
               style: ElevatedButton.styleFrom(
