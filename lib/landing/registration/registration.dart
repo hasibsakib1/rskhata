@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rskhata/utils/number_validator.dart';
 
+import '../../utils/show_snackbar.dart';
 import 'controller/registration_request_controller.dart';
 import 'controller/business_type_controller.dart';
 import 'model/registration_request_model.dart';
@@ -114,9 +116,8 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
                 padding: const EdgeInsets.all(10),
                 child: ElevatedButton(
                   onPressed: () {
-                    ref
-                        .read(registrationControllerProvider.notifier)
-                        .registrationRequest( context,
+                    numberValidator(phoneController.text)?
+                      ref.read(registrationControllerProvider.notifier).registrationRequest( context,
                           RegistrationRequestModel(
                             phone: phoneController.text,
                             email: emailController.text,
@@ -124,7 +125,8 @@ class _RegistrationPageState extends ConsumerState<RegistrationPage> {
                             businessName: businessNameController.text,
                             businessTypeId: businessTypeId ?? 0,
                           ),
-                        );
+                        )
+                      : showSnackBar(context, 'Invalid phone number');
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor:

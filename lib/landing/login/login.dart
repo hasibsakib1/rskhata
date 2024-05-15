@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rskhata/utils/number_validator.dart';
 
+import '../../utils/show_snackbar.dart';
 import 'controller/login_otp_request.dart';
 
 
@@ -40,7 +42,9 @@ class LoginPage extends ConsumerWidget {
             padding: const EdgeInsets.all(10),
             child: ElevatedButton(
               onPressed: () {
-                ref.read(loginOtpRequestProvider.notifier).loginOtpRequest(context, phoneController.text);
+                numberValidator(phoneController.text)?
+                 ref.read(loginOtpRequestProvider.notifier).loginOtpRequest(context, phoneController.text) : 
+                 showSnackBar(context, 'Invalid phone number');
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Theme.of(context).colorScheme.primary.withAlpha(150),
