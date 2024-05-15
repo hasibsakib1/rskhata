@@ -17,8 +17,7 @@ final registrationOtpControllerProvider =
 class RegistrationOtpController extends StateNotifier<String?> {
   RegistrationOtpController() : super(null);
 
-  void verifyRegistrationOtp(BuildContext context, String identifier, String otp) async {
-    final providerContainer = ProviderContainer();
+  void verifyRegistrationOtp(BuildContext context, WidgetRef ref, String identifier, String otp) async {
 
     final regOtp =
         FormData.fromMap({'identifier_id': identifier, 'otp_code': otp});
@@ -32,12 +31,12 @@ class RegistrationOtpController extends StateNotifier<String?> {
       final data = response.data;
       if (data['status'] == 200) {
         final apiToken = data['response_user']['api_token'];
-        log.i(apiToken);
         state = apiToken;
         final userInfo = LoginSuccessModel.fromJson(data['response_user']);
         SharedPref.setString("api_key", userInfo.apiToken!);
-        providerContainer.read(loginOtpControllerProvider.notifier).state = userInfo;
-        log.i(providerContainer.read(loginOtpControllerProvider));
+        print(userInfo.apiToken);
+        ref.read(loginOtpControllerProvider.notifier).state = userInfo;
+        print(ref.read(loginOtpControllerProvider)?.apiToken ?? 'No data');
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (context) => const HomePage()),
             (route) => false);
@@ -47,7 +46,7 @@ class RegistrationOtpController extends StateNotifier<String?> {
     } catch (e) {
       log.e(e);
     } finally {
-      providerContainer.dispose();
+      // providerContainer.dispose();
     }
   }
 }

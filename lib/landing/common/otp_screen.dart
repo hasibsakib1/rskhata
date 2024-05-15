@@ -44,7 +44,7 @@ class OtpScreen extends ConsumerWidget {
               onPressed: () {
                 isLogin ?
                 ref.read(loginOtpControllerProvider.notifier).verifyLoginOtp(context, phoneOrIdentifier, otpController.text) :
-                ref.read(registrationOtpControllerProvider.notifier).verifyRegistrationOtp(context, phoneOrIdentifier, otpController.text);
+                ref.read(registrationOtpControllerProvider.notifier).verifyRegistrationOtp(context, ref, phoneOrIdentifier, otpController.text);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Theme.of(context).colorScheme.primary.withAlpha(150),

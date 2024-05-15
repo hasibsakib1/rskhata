@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rskhata/core/shared_pref.dart';
 import 'package:rskhata/landing/common/model/login_success_model.dart';
+import 'package:rskhata/landing/landing_page.dart';
 
 import '../landing/common/controller/login_otp.dart';
 
@@ -30,14 +31,14 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final LoginSuccessModel userInfo = ref.read(loginOtpControllerProvider)!;
+    final LoginSuccessModel? userInfo = ref.watch(loginOtpControllerProvider);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hello, ${userInfo.name}'),
+        title: Text('Hello, ${userInfo!.name}'),
         actions: [
           IconButton(
             onPressed: (){
-              
+              print(userInfo.toJson());
             },
             tooltip: "Profile",
             icon: const Icon(Icons.account_circle),
@@ -45,7 +46,7 @@ class _HomePageState extends ConsumerState<HomePage> {
           IconButton(
             onPressed: (){
               SharedPref.setString("api_key", "");
-              Navigator.of(context).pop();
+              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=> LandingPage()), (route) => false);
             },
             tooltip: "Logout",
             icon: const Icon(Icons.logout),
