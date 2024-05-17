@@ -1,6 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rskhata/core/networking/request_base.dart';
 
+import '../../../core/api.dart';
+import '../../../core/networking/request_base.dart';
 import '../../../main.dart';
 import '../model/branch_model.dart';
 
@@ -14,9 +16,8 @@ class BranchController extends StateNotifier<List<BranchModel>> {
   RequestBase requestBase = RequestBase();
 
   void getBranchList() async {
-    
     try {
-      final response = await requestBase.get("admin/branches");
+      final response = await requestBase.get(getBranchesApi);
       if (response.statusCode == 200) {
         final data = response.data['branches']['branches'];
         final branches = data.map<BranchModel>((e) => BranchModel.fromJson(e)).toList();
@@ -28,4 +29,56 @@ class BranchController extends StateNotifier<List<BranchModel>> {
       log.e(e);
     }
   }
+
+  void createBranch(String name) async {
+
+    final newBranchName = FormData.fromMap(
+      {"name": name}
+    );
+
+    try {
+      final response = await requestBase.post(createBranchApi, newBranchName);
+      if (response.statusCode == 200) {
+        // final data = response.data['branches']['branches'];
+        // final branches = data.map<BranchModel>((e) => BranchModel.fromJson(e)).toList();
+        // state = branches;
+        getBranchList();
+      } else {
+        throw Exception('Failed to create branch');
+      }
+    } on Exception catch (e) {
+      log.e(e);
+    }
+  }
+
+  void updateBranch(int id, String name) async {
+    final updatedBranchName = FormData.fromMap(
+      {"name": name}
+    );
+
+    try {
+      final response = await requestBase.post(updateBranchApi(id), updatedBranchName);
+      if (response.statusCode == 200) {
+        getBranchList();
+      } else {
+        throw Exception('Failed to update branch');
+      }
+    } on Exception catch (e) {
+      log.e(e);
+    }
+  }
+
+  void deleteBranch(int id) async {
+    try {
+      final response = await requestBase.delete(deleteBranchApi(id));
+      if (response.statusCode == 200) {
+        getBranchList();
+      } else {
+        throw Exception('Failed to delete branch');
+      }
+    } on Exception catch (e) {
+      log.e(e);
+    }
+  }
+
 }

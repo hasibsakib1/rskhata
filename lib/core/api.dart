@@ -8,3 +8,12 @@ String reSendOtpApi = "${baseUrl}sign-up/send-otp-code";
 String loginOtpApi = "${baseUrl}send-login-otp";
 String loginApi = "${baseUrl}login";
 
+String getBranchesApi = "${baseUrl}admin/branches";
+String createBranchApi = "${baseUrl}admin/branch/create";
+String deleteBranchApi(int id){
+  return "${baseUrl}admin/branch/$id/delete";
+}
+String updateBranchApi(int id){
+  return "${baseUrl}admin/branch/$id/update";
+}
+
