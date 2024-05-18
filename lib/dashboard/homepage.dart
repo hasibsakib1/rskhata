@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:rskhata/customer/customer_list_screen.dart';
 
 import '../core/shared_pref.dart';
 import '../landing/common/model/login_success_model.dart';
@@ -18,7 +19,7 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class _HomePageState extends ConsumerState<HomePage> {
-  late String? apiKey = '';
+
   final TextEditingController branchNameController = TextEditingController();
   List<BranchModel> branchList = [];
 
@@ -29,12 +30,6 @@ class _HomePageState extends ConsumerState<HomePage> {
     getBranchList();
   }
 
-  @override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
-    branchList = ref.watch(branchControllerProvider);
-  }
 
   void getBranchList() {
     ref.read(branchControllerProvider.notifier).getBranchList();
@@ -85,6 +80,9 @@ class _HomePageState extends ConsumerState<HomePage> {
                     child: ListTile(
                       leading: Icon(Icons.store),
                       title: Text(branchList[index].name!),
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => CustomerListScreen(branch: branchList[index])));
+                      },
                     ),
                   ),
                 );

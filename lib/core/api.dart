@@ -17,3 +17,17 @@ String updateBranchApi(int id){
   return "${baseUrl}admin/branch/$id/update";
 }
 
+String getCustomersApi({required int branchId, required int customerType}){
+  return "${baseUrl}admin/$branchId/$customerType/customers";
+}
+String createCustomerApi({required int branchId}){
+  return "${baseUrl}admin/$branchId/customer/create";
+}
+
+String updateCustomerApi({required int branchId,required int customerId}){
+  return "${baseUrl}admin/$branchId/customer/$customerId/update";
+}
+
+String deleteCustomerApi({required int branchId,required int customerId}){
+  return "${baseUrl}admin/$branchId/customer/$customerId/delete";
+}

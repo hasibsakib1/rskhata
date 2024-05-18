@@ -13,7 +13,7 @@ final branchControllerProvider =
 class BranchController extends StateNotifier<List<BranchModel>> {
   BranchController() : super([]);
 
-  RequestBase requestBase = RequestBase();
+  final RequestBase requestBase = RequestBase();
 
   void getBranchList() async {
     try {
