@@ -36,7 +36,6 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // final LoginSuccessModel? userInfo = ref.watch(loginOtpControllerProvider);
 
     Widget showBranchList() {
       return branchList.isEmpty
