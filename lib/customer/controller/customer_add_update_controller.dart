@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rskhata/customer/controller/supplier_list_controller.dart';
 
+import 'supplier_list_controller.dart';
 import '../../core/api.dart';
 import '../../core/networking/request_base.dart';
 import '../../main.dart';

@@ -18,9 +18,7 @@ class SupplierListController extends StateNotifier<List<CustomerListModel>>{
       final response = await requestBase.get(getCustomersApi(branchId: branchId, customerType: 1));
       if(response.statusCode == 200) {
         final data = response.data['customers']['customers'];
-        print(data);
         final supplierList = data.map<CustomerListModel>((e) => CustomerListModel.fromJson(e)).toList();
-        print(supplierList);
         state = supplierList;
       } else {
         throw Exception('Failed to load customer list');
@@ -34,8 +32,6 @@ class SupplierListController extends StateNotifier<List<CustomerListModel>>{
     try {
       final response = await requestBase.delete(deleteCustomerApi(branchId: branchId, customerId: customerId));
       if(response.statusCode == 200) {
-        final data = response.data;
-        print(data);
         getSupplierList(branchId: branchId);
       } else {
         throw Exception('Failed to delete customer');

@@ -19,7 +19,6 @@ class CustomerAddUpdateScreen extends ConsumerWidget {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController typeController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
   final TextEditingController areaController = TextEditingController();
   final TextEditingController cityController = TextEditingController();

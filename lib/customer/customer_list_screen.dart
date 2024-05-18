@@ -28,7 +28,6 @@ class _CustomerListScreenState extends ConsumerState<CustomerListScreen> {
     super.initState();
     getCustomerList();
     getSupplierList();
-    print(widget.branch);
   }
 
   void getCustomerList() {
@@ -45,7 +44,7 @@ class _CustomerListScreenState extends ConsumerState<CustomerListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    
+
     Widget showCustomerSupplierList(List<CustomerListModel> list,
         {bool isSupplier = false}) {
       return list.isEmpty
