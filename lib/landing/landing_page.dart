@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rskhata/dashboard/homepage.dart';
 
-import '../core/shared_pref.dart';
 import 'registration/controller/business_type_controller.dart';
 import 'registration/registration.dart';
 import 'login/login.dart';
@@ -15,18 +13,6 @@ class LandingPage extends ConsumerStatefulWidget {
 }
 
 class _LandingPageState extends ConsumerState<LandingPage> {
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    autoLogin();
-  }
-
-  void autoLogin() {
-    SharedPref.setString('api_key', 'DRYg1715868522AKJe4');
-    // Navigator.push(context, MaterialPageRoute(builder:  (context) => HomePage()));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +29,7 @@ class _LandingPageState extends ConsumerState<LandingPage> {
                 padding: const EdgeInsets.all(10),
                 child: ElevatedButton(
                   onPressed: () {
-                    // Navigator.push(context, MaterialPageRoute(builder:  (context) => LoginPage()));
-                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=> HomePage()), (route) => false);
+                    Navigator.push(context, MaterialPageRoute(builder:  (context) => LoginPage()));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Theme.of(context).colorScheme.primary.withAlpha(150),

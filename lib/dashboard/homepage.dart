@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:rskhata/customer/customer_list_screen.dart';
 
+import '../customer/customer_list_screen.dart';
 import '../core/shared_pref.dart';
-import '../landing/common/model/login_success_model.dart';
 import '../landing/landing_page.dart';
-import '../landing/common/controller/login_otp.dart';
 import 'branch/controller/branch_controller.dart';
 import 'branch/create_branch.dart';
 import 'branch/model/branch_model.dart';
+import 'profile/profile_screen.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -99,7 +98,7 @@ class _HomePageState extends ConsumerState<HomePage> {
           actions: [
             IconButton(
               onPressed: () {
-                // print(userInfo.toJson());
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfileScreen()));
               },
               tooltip: "Profile",
               icon: const Icon(Icons.account_circle),

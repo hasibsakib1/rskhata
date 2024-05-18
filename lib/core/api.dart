@@ -31,3 +31,7 @@ String updateCustomerApi({required int branchId,required int customerId}){
 String deleteCustomerApi({required int branchId,required int customerId}){
   return "${baseUrl}admin/$branchId/customer/$customerId/delete";
 }
+
+String profileApi = 'admin/profile';
+String profileUpdateApi = 'admin/profile/update';
+String deleteProfileApi = 'admin/account-delete';
